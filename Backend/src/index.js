@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import multer from "multer";
-import { moviesRouter } from "./router/index.js";
+import { favoritesRouter, moviesRouter } from "./router/index.js";
 import * as dotenv from 'dotenv';
 
 
@@ -23,6 +23,7 @@ const PORT = process.env.PORT
 
 
 app.use("/movies", moviesRouter.default)
+app.use("/favorites", favoritesRouter.default)
 
 
 

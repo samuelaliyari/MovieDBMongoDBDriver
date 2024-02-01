@@ -1,5 +1,8 @@
 import { ObjectId } from "mongodb"
 import { getDB } from "./DB.js"
+import { makeMovie } from "../Domain/index.js";
+
+
 
 
 // ################GET ALL DOCUMENTS OF A COLLECTION###################
@@ -39,17 +42,32 @@ export const deleteOneByID = async (collection, movieId) => {
 
 export const insertOne = async (collection, movieNew) => {
     const db = await getDB();
-    const result = await db.collection(collection).insertOne(movieNew);
-    return movieNew;
+    const movie = makeMovie(movieNew)
+    const result = await db.collection(collection).insertOne(movie);
+    return makeMovie(result);
 }
 
 // ########################## EDIT A MOVIE DOCUMENT########################
 
 
 export const editOne = async (collection, editedMovie) => {
+    const movie = makeMovie(editedMovie)
     const db = await getDB();
-    const id = editedMovie._id
-    delete editedMovie._id
-    const movie = await db.collection(collection).findOneAndReplace({ _id: ObjectId.createFromHexString(id) }, editedMovie, { returnDocument: "after" });
-    return movie;
+    console.log(movie)
+    const id = movie._id
+    delete movie._id
+    const result = await db.collection(collection).findOneAndReplace({ _id: ObjectId.createFromHexString(id) }, movie, { returnDocument: "after" });
+    return result;
+}
+
+
+
+export const addToCollection = async (collection, movieId) => {
+    const db = await getDB();
+    if (collection === "favorites") {
+        const movie = await getById("movies", movieId);
+        const result = await db.collection(collection).insertOne(movie)
+        return result
+    }
+    else return null
 }
