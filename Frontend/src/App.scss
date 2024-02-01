@@ -1,0 +1,27 @@
+/* ====================================================================
+                                RESET
+=====================================================================*/
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+main {
+	background: url(../public/img/moviemagic.png) center / cover no-repeat fixed;
+}
+.list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	place-items: center;
+}
