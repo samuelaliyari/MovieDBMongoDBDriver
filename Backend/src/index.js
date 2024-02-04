@@ -23,6 +23,7 @@ const PORT = process.env.PORT
 
 
 app.use("/movies", moviesRouter.default)
+
 app.use("/favorites", favoritesRouter.default)
 
 

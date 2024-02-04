@@ -19,7 +19,7 @@ favoritesRouter.get("/search/:searchInput", controller.searchFavoriteByInput)
 
 // ########################### insertNewMovie ###############################
 
-favoritesRouter.post("/:movieId", controller.insertNewFavorite)
+favoritesRouter.patch("/:movieId", controller.insertNewFavorite)
 
 // ######################### deleteMovieById ################################
 

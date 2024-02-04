@@ -1,12 +1,20 @@
 
-export const makeMovie = ({ _id, title,
+export const makeMovie = ({ title,
     year,
+    rated,
     runtime,
+    countries,
     genres,
     director,
+    writers,
+    actors,
     plot,
     poster,
-    imdb
+    imdb,
+    tomato,
+    metacritic,
+    awards,
+    type
 }) => {
     if (typeof title === "undefined" || typeof title !== "string" || title.trim() === "") {
         throw new Error("The Title Value is invalid!")
@@ -34,14 +42,21 @@ export const makeMovie = ({ _id, title,
         throw new Error("The IMDBrating Value is invalid!")
     }
     return {
-        _id,
         title,
         year,
+        rated,
         runtime,
+        countries,
         genres,
         director,
+        writers,
+        actors,
         plot,
         poster,
-        imdb
+        imdb,
+        tomato,
+        metacritic,
+        awards,
+        type
     }
 }
