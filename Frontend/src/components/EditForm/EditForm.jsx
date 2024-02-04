@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './EditForm.scss';
 
 const EditForm = ({ movie }) => {
@@ -61,7 +61,10 @@ const EditForm = ({ movie }) => {
 				onChange={(e) =>
 					setEditedMovie({
 						...editedMovie,
-						'imdb.rating': Number(e.target.value),
+						imdb: {
+							...editedMovie.imdb,
+							rating: Number(e.target.value),
+						},
 					})
 				}
 			/>

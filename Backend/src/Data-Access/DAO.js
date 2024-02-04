@@ -52,11 +52,11 @@ export const insertOne = async (collection, movieNew) => {
 
 export const editOne = async (collection, editedMovie) => {
     const movie = makeMovie(editedMovie)
-    const db = await getDB();
     console.log(movie)
-    const id = movie._id
-    delete movie._id
+    const db = await getDB();
+    const id = editedMovie._id
     const result = await db.collection(collection).findOneAndReplace({ _id: ObjectId.createFromHexString(id) }, movie, { returnDocument: "after" });
+    console.log(result)
     return result;
 }
 
